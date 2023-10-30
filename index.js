@@ -1,6 +1,7 @@
 let express = require(`express`);
 let app = express();
-let port = 3005;
+let port = process.env.PORT;
+require('dotenv').config()
 const bodyParser = require("body-parser");
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
@@ -11,14 +12,26 @@ app.listen(port, function () {
 });
 
 let cors = require('cors');
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: `http://localhost:${port}` }));
 
 app.use(express.json());
 const multer = require('multer');
 
 let mongoose = require('mongoose');
 const dayjs = require("dayjs");
-mongoose.connect('mongodb://127.0.0.1:27017/LitClub');
+
+
+mongoose.set('strictQuery', false);
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
+
 const Schema = mongoose.Schema;
 
 const accountSchema = new Schema({
