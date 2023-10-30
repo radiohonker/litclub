@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 var options = {
     dotfiles: 'ignore',
@@ -41,11 +41,7 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`istening ${port}`)
-    })
-})
+
 const Schema = mongoose.Schema;
 
 const accountSchema = new Schema({
@@ -317,4 +313,9 @@ app.post('/post-comment', async function(req,res){
         res.status(500).send('Server error');
     }
 
+})
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`istening ${port}`)
+    })
 })
