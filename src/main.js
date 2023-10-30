@@ -14,6 +14,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from '../router.js';
 
+
 import VueCookies from 'vue-cookies';
 import store from '../store.js';
 createApp(App).config.productionTip = false;

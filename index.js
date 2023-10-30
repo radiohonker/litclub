@@ -1,6 +1,17 @@
 let express = require(`express`);
 let app = express();
 let port = process.env.PORT || 3000;
+
+var options = {
+    dotfiles: 'ignore',
+    etag: false,
+    extensions: ['htm', 'html','css','js','ico','jpg','jpeg','png','svg'],
+    index: ['index.html'],
+    maxAge: '1m',
+    redirect: false
+}
+app.use(express.static('dist', options))
+
 require('dotenv').config()
 const bodyParser = require("body-parser");
 app.use(express.json({ limit: '10mb' }));
@@ -89,10 +100,6 @@ app.post(`/auth` , async function(req,res){
         }
     }
 })
-
-app.get('/', (req, res) => {
-    res.send('Welcome to my application');
-});
 app.get('/books', async function (req, res) {
     try {
         let books = await book.find({});
