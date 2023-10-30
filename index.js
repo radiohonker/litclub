@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-const port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
 var options = {
     dotfiles: 'ignore',
@@ -71,6 +71,7 @@ const bookSchema = new Schema({
 
 const account = mongoose.model('Account', accountSchema);
 const book = mongoose.model('Book', bookSchema);
+
 app.post(`/auth` , async function(req,res){
     let login = req.body.login;
     let password = req.body.pass;
