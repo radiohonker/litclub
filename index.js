@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = process.env.PORT;
+let port = process.env.PORT || 3000;
 require('dotenv').config()
 const bodyParser = require("body-parser");
 app.use(express.json({ limit: '10mb' }));
