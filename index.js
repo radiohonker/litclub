@@ -18,9 +18,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
-app.listen(port, function () {
-    console.log(`http://localhost:${port}`);
-});
+
 
 let cors = require('cors');
 app.use(cors({ origin: `http://localhost:${port}` }));
