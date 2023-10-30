@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = process.env.PORT || 3000;
+let port = process.env.PORT;
 
 var options = {
     dotfiles: 'ignore',
@@ -31,7 +31,21 @@ const multer = require('multer');
 let mongoose = require('mongoose');
 const dayjs = require("dayjs");
 
-
+mongoose.set('strictQuery', false);
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`istening ${port}`)
+    })
+})
 const Schema = mongoose.Schema;
 
 const accountSchema = new Schema({
@@ -57,21 +71,6 @@ const bookSchema = new Schema({
 
 const account = mongoose.model('Account', accountSchema);
 const book = mongoose.model('Book', bookSchema);
-mongoose.set('strictQuery', false);
-const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-}
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`istening ${port}`)
-    })
-})
 app.post(`/auth` , async function(req,res){
     let login = req.body.login;
     let password = req.body.pass;
