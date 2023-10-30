@@ -90,6 +90,9 @@ app.post(`/auth` , async function(req,res){
     }
 })
 
+app.get('/', (req, res) => {
+    res.send('Welcome to my application');
+});
 app.get('/books', async function (req, res) {
     try {
         let books = await book.find({});
