@@ -31,7 +31,11 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
-
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`istening ${port}`)
+    })
+})
 const Schema = mongoose.Schema;
 
 const accountSchema = new Schema({
