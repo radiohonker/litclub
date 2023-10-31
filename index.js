@@ -7,18 +7,13 @@ async function com() {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
-        app.listen(port, () => {
-            console.log(`Listening http://localhost:${port}`);
-        });
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
 }
 
-com().then(() => {
-    console.log('happy happy happy')
-});
+
 
 var options = {
     dotfiles: 'ignore',
@@ -320,3 +315,8 @@ app.post('/post-comment', async function(req,res){
     }
 
 })
+com().then(() => {
+    app.listen(port, () => {
+        console.log(`Listening http://localhost:${port}`);
+    });
+});
