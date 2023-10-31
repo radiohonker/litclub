@@ -13,8 +13,6 @@ async function com() {
     }
 }
 
-
-
 var options = {
     dotfiles: 'ignore',
     etag: false,
@@ -35,12 +33,6 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.json());
 const multer = require('multer');
 
-
-const cors = require('cors');
-app.use(cors({
-    origin: `http://localhost:${port}`, // Replace with your frontend's URL
-    methods: 'GET,POST', // Specify allowed HTTP methods
-}));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
