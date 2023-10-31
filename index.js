@@ -1,7 +1,6 @@
 let express = require(`express`);
 let app = express();
 let port = process.env.PORT || 3000;
-
 var options = {
     dotfiles: 'ignore',
     etag: false,
@@ -19,9 +18,6 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 
-
-let cors = require('cors');
-app.use(cors({ origin: `http://localhost:${port}` }));
 
 app.use(express.json());
 const multer = require('multer');
@@ -41,11 +37,14 @@ const connectDB = async () => {
 }
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log(`istening ${port}`)
+        console.log(`istening http://localhost:${port}`)
     })
 })
-const Schema = mongoose.Schema;
 
+let cors = require('cors');
+app.use(cors({ origin: `http://localhost:${port}` }));
+
+const Schema = mongoose.Schema;
 const accountSchema = new Schema({
     login: String,
     pass: mongoose.Schema.Types.Mixed,
@@ -66,7 +65,10 @@ const bookSchema = new Schema({
     description: mongoose.Schema.Types.Mixed,
     comments: Array
 });
-
+app.get(`/`, async function (req,res) {
+    const books = await book.find({});
+    res.json(books); // Send the retrieved data as JSON
+})
 const account = mongoose.model('Account', accountSchema);
 const book = mongoose.model('Book', bookSchema);
 
