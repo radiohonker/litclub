@@ -1,7 +1,7 @@
 let express = require(`express`);
 let app = express();
 let port = process.env.PORT || 3000;
-
+let mongoose = require('mongoose');
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.json());
 const multer = require('multer');
 
-let mongoose = require('mongoose');
+
 const dayjs = require("dayjs");
 
 
