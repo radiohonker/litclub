@@ -2,6 +2,7 @@ let express = require(`express`);
 let app = express();
 let port = process.env.PORT || 3000;
 let mongoose = require('mongoose');
+require('dotenv').config()
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
@@ -22,7 +23,6 @@ var options = {
 }
 app.use(express.static('dist', options))
 
-require('dotenv').config()
 const bodyParser = require("body-parser");
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
