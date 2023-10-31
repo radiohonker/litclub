@@ -66,8 +66,14 @@ const bookSchema = new Schema({
     comments: Array
 });
 app.get(`/`, async function (req,res) {
-    const books = await book.find({});
-    res.json(books); // Send the retrieved data as JSON
+    try {
+        // Use Mongoose to fetch data from the "books" collection
+        const books = await book.find({});
+        res.json(books); // Send the retrieved data as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 })
 const account = mongoose.model('Account', accountSchema);
 const book = mongoose.model('Book', bookSchema);
