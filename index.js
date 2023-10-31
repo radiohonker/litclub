@@ -7,6 +7,9 @@ const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
+        app.listen(port, () => {
+            console.log(`istening http://localhost:${port}`)
+        })
     } catch (error) {
         console.log(error);
         process.exit(1);
@@ -312,10 +315,4 @@ app.post('/post-comment', async function(req,res){
         res.status(500).send('Server error');
     }
 
-})
-
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`istening http://localhost:${port}`)
-    })
 })
