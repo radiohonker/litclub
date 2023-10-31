@@ -3,18 +3,22 @@ let app = express();
 let port = process.env.PORT || 3000;
 let mongoose = require('mongoose');
 require('dotenv').config()
-const connectDB = async () => {
+async function com() {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
         app.listen(port, () => {
-            console.log(`istening http://localhost:${port}`)
-        })
+            console.log(`Listening http://localhost:${port}`);
+        });
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
 }
+
+com().then(() => {
+    console.log('happy happy happy')
+});
 
 var options = {
     dotfiles: 'ignore',
