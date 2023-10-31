@@ -35,11 +35,7 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`istening http://localhost:${port}`)
-    })
-})
+
 
 let cors = require('cors');
 app.use(cors({ origin: `http://localhost:${port}` }));
@@ -67,16 +63,7 @@ const bookSchema = new Schema({
 });
 const account = mongoose.model('Account', accountSchema);
 const book = mongoose.model('Book', bookSchema);
-app.get(`/`, async function (req,res) {
-    try {
-        // Use Mongoose to fetch data from the "books" collection
-        const books = await book.find({});
-        res.json(books); // Send the retrieved data as JSON
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
-})
+
 app.post(`/auth` , async function(req,res){
     let login = req.body.login;
     let password = req.body.pass;
@@ -323,4 +310,10 @@ app.post('/post-comment', async function(req,res){
         res.status(500).send('Server error');
     }
 
+})
+
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`istening http://localhost:${port}`)
+    })
 })
