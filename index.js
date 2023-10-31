@@ -1,6 +1,17 @@
 let express = require(`express`);
 let app = express();
 let port = process.env.PORT || 3000;
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
+
 var options = {
     dotfiles: 'ignore',
     etag: false,
@@ -25,16 +36,7 @@ const multer = require('multer');
 let mongoose = require('mongoose');
 const dayjs = require("dayjs");
 
-mongoose.set('strictQuery', false);
-const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect(process.env.MONGO_URI);
-        console.log(`MongoDB Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-}
+
 
 
 let cors = require('cors');
