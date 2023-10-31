@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = process.env.PORT || 3005;
+let port = 3005;
 let mongoose = require('mongoose');
 require('dotenv').config()
 async function com() {
