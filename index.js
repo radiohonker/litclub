@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 3005;
 let mongoose = require('mongoose');
 require('dotenv').config()
 async function com() {
@@ -33,12 +33,8 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.json());
 const multer = require('multer');
 
-
-const cors = require('cors');
-app.use(cors({
-    origin: `http://localhost:${port}`, // Replace with your frontend's URL
-    methods: 'GET,POST', // Specify allowed HTTP methods
-}));
+let cors = require('cors');
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
