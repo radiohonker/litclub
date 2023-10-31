@@ -37,7 +37,10 @@ const multer = require('multer');
 
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+    origin: `http://localhost:${port}`, // Replace with your frontend's URL
+    methods: 'GET,POST', // Specify allowed HTTP methods
+}));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
