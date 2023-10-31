@@ -65,6 +65,8 @@ const bookSchema = new Schema({
     description: mongoose.Schema.Types.Mixed,
     comments: Array
 });
+const account = mongoose.model('Account', accountSchema);
+const book = mongoose.model('Book', bookSchema);
 app.get(`/`, async function (req,res) {
     try {
         // Use Mongoose to fetch data from the "books" collection
@@ -75,9 +77,6 @@ app.get(`/`, async function (req,res) {
         res.status(500).send('Internal Server Error');
     }
 })
-const account = mongoose.model('Account', accountSchema);
-const book = mongoose.model('Book', bookSchema);
-
 app.post(`/auth` , async function(req,res){
     let login = req.body.login;
     let password = req.body.pass;
