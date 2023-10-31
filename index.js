@@ -34,7 +34,7 @@ app.use(express.json());
 const multer = require('multer');
 
 let cors = require('cors');
-app.use(cors({ origin: 'http://localhost:3005' }));
+app.use(cors({ origin: `http://localhost:${port}` }));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
