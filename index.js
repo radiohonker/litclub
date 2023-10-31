@@ -44,29 +44,9 @@ const dayjs = require("dayjs");
 let cors = require('cors');
 app.use(cors({ origin: `http://localhost:${port}` }));
 
-const Schema = mongoose.Schema;
-const accountSchema = new Schema({
-    login: String,
-    pass: mongoose.Schema.Types.Mixed,
-    favbooks: [{ type: Schema.Types.ObjectId, ref: 'book' }],
-    recentRead: [{ type: Schema.Types.ObjectId, ref: 'book' }],
-    myBooks: [{ type: Schema.Types.ObjectId, ref: 'book' }],
-    bookmark: [{ type: Schema.Types.Mixed }],
-    showbookmark: String
-});
+const book = require("./models/books");
+const account = require("./models/accounts");
 
-const bookSchema = new Schema({
-    title: String,
-    content: String,
-    img: String,
-    popularity: { type: Number, default: 0 },
-    createdAt: Date,
-    author: String,
-    description: mongoose.Schema.Types.Mixed,
-    comments: Array
-});
-const account = mongoose.model('Account', accountSchema);
-const book = mongoose.model('Book', bookSchema);
 
 app.post(`/auth` , async function(req,res){
     let login = req.body.login;
@@ -98,7 +78,7 @@ app.post(`/auth` , async function(req,res){
 })
 app.get('/books', async function (req, res) {
     try {
-        let books = await book.find({});
+        let books = await book.find();
         res.send(books);
     } catch (error) {
         console.error(error);
