@@ -36,7 +36,7 @@ const multer = require('multer');
 let cors = require('cors');
 app.use(cors(
     {
-        origin: ['https://lonely-kimono-eel.cyclic.app/']
+        origin: ['https://lonely-kimono-eel.cyclic.app']
     }
 ));
 
