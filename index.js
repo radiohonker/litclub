@@ -33,8 +33,6 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.json());
 const multer = require('multer');
 
-let cors = require('cors');
-app.use(cors());
 
 const book = require("./models/books");
 const account = require("./models/accounts");
