@@ -34,7 +34,11 @@ app.use(express.json());
 const multer = require('multer');
 
 let cors = require('cors');
-app.use(cors());
+app.use(cors(
+    {
+        origin: ['https://lonely-kimono-eel.cyclic.app/']
+    }
+));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
