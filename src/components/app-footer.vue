@@ -1,7 +1,7 @@
 <template>
   <footer class="black-footer">
     <div class="container">
-      <p class="text">Litclub© 2023 </p>
+      <p class="text">Litclub© 2024</p>
     </div>
   </footer>
 </template>
