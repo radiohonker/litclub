@@ -1,7 +1,7 @@
 <template>
   <footer class="black-footer">
     <div class="container">
-      <p class="text">Litclub© 2024</p>
+      <p class="text">Litclub© 2024 (Хотулев И.)</p>
     </div>
   </footer>
 </template>
