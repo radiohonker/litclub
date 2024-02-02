@@ -1,6 +1,6 @@
 // Запросы к серверу
 import axios from "axios";
-axios.defaults.baseURL = 'https://litclub-5pbp.onrender.com';
+axios.defaults.baseURL = 'https://troubled-teal-caiman.cyclic.app/';
 
 // Работа с датой
 import dayjs from 'dayjs';
