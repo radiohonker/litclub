@@ -1,6 +1,6 @@
 // Запросы к серверу
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:3005';
+axios.defaults.baseURL = 'https://troubled-teal-caiman.cyclic.app';
 
 // Работа с датой
 import dayjs from 'dayjs';
