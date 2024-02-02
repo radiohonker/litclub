@@ -33,14 +33,13 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(express.json());
 const multer = require('multer');
 
-let cors = require('cors');
-app.use(cors(
-    {
-        origin: ['http://localhost:5173'],
-        credentials:true,    
-        optionSuccessStatus:200
-    }
-));
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3005', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 const book = require("./models/books");
 const account = require("./models/accounts");
