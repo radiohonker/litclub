@@ -32,11 +32,7 @@ app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 
 app.use(express.json());
 const multer = require('multer');
-res.setHeader("Access-Control-Allow-Origin", "https://lonely-kimono-eel.cyclic.app");
-res.setHeader("Access-Control-Allow-Credentials", "true");
-res.setHeader("Access-Control-Max-Age", "1800");
-res.setHeader("Access-Control-Allow-Headers", "content-type");
-res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS");
+
 const cors = require('cors');
 const corsOptions ={
     origin:['https://lonely-kimono-eel.cyclic.app'],
