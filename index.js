@@ -35,7 +35,7 @@ const multer = require('multer');
 
 const cors = require('cors');
 const corsOptions ={
-    origin:'http://localhost:3005', 
+    origin:'https://lonely-kimono-eel.cyclic.app', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
