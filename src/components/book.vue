@@ -21,6 +21,7 @@ export default {
       login: null,
       pasta: '',
       newComment: '',
+      deleteButtonText: 'УДАЛИТЬ',
       stuff_error: false,
       content: '',
       error_message: 'Ваш комментарий не может быть пустым'
@@ -46,6 +47,22 @@ export default {
       const stuff = dayjs(time);
       return stuff.fromNow(true) + ' назад'
 },
+
+    async deleteBook() {
+      try {
+        const confirmDelete = confirm("Вы уверены?");
+        if (confirmDelete) {
+          this.deleteButtonText = "Вы уверены?";
+          let response = await axios.delete(`/delete-book/${this.book._id}`);
+          if (response.status === 200) {
+            this.$router.push({ name: 'main' });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
 
 
 
@@ -221,10 +238,14 @@ export default {
               <div style = "font-size: 1rem;">{{pasta}}</div>
             </div>
           </div>
-          <div class = "variations">
-            <button @click = "this.description = true; this.read = false">Описание</button>
-            <button class = "rev" @click = "this.description = false; this.read = true">Комментарии</button>
-            <button @click="navigateToRead">Читать</button>
+          <div class="button-container">
+            <div class="variations">
+              <button @click="this.description = true; this.read = false">Описание</button>
+              <button class="rev" @click="this.description = false; this.read = true">Комментарии</button>
+              <button @click="navigateToRead">Читать</button>
+            </div>
+            <button id="delete" v-if="this.book.author === this.login" class="btn btn-primary" @click="deleteBook">{{ deleteButtonText }}</button>
+
           </div>
           <hr>
           <div v-if="read" class = "read">
@@ -354,12 +375,13 @@ hr{
   margin-top:2em;
   font-size:1.3rem;
   color: #d9d6d6;
+
 }
 .comment-section{
   width: 100%;
   padding: 0 3em 0 3em;
 }
-.variations button{
+.button-container button{
   width:8em;
   height:2.5em;
   border:1px solid #d9d6d6;
@@ -369,6 +391,23 @@ hr{
 .variations button:last-child{
   margin-left:1em;
 }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.variations {
+  display: flex;
+}
+
+#delete{
+  margin-top:45px;
+  border: 1px solid red;
+  color:red;
+  width:10em;
+  height:3.1em;
+}
+
 .size{
   font-size:1.3rem;
   margin-bottom:1.5em;
