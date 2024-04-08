@@ -52,7 +52,6 @@ export default {
       try {
         const confirmDelete = confirm("Вы уверены?");
         if (confirmDelete) {
-          this.deleteButtonText = "Вы уверены?";
           let response = await axios.delete(`/delete-book/${this.book._id}`);
           if (response.status === 200) {
             this.$router.push({ name: 'main' });
@@ -62,9 +61,6 @@ export default {
         console.error(error);
       }
     },
-
-
-
 
     async submit_comment() {
       if (this.content.length !== 0) {
