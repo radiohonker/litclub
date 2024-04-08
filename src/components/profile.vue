@@ -130,14 +130,18 @@ export default {
     let myIds = this.bookIds.myBooks;
     console.log(recentReadIds, favbooksIds);
     this.recents = await this.getBooks(this.removeDuplicates(recentReadIds));
+    this.recents = this.recents.filter(book => book !== undefined);
     while (this.recents.length > 5) {
       this.recents.pop();
     }
     this.favs = await this.getBooks(this.removeDuplicates(favbooksIds));
+    this.favs = this.favs.filter(book => book !== undefined);
+
     while (this.favs.length > 5) {
       this.favs.pop();
     }
     this.my = await this.getBooks(this.removeDuplicates(myIds));
+    this.my = this.my.filter(book => book !== undefined);
     while (this.my.length > 5) {
       this.my.pop();
     }
@@ -156,7 +160,8 @@ export default {
             <div class = "books">
               <div class = "error" v-if="this.recents.length == 0">Странно, здесь пока ничего нет.</div>
               <div v-for="(book, index) in recents" class = "book" @click="GotoBook(book._id)">
-                <div class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+                <div v-if="book && book.img" class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+
                 <span class = "book-name">{{ book.title.toUpperCase() }}</span>
               </div>
             </div>
@@ -166,7 +171,8 @@ export default {
             <div class = "books">
               <div class = "error" v-if="this.favs.length == 0">Странно, здесь пока ничего нет.</div>
               <div v-for="(book, index) in favs" class = "book" @click="GotoBook(book._id)">
-                <div class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+                <div v-if="book && book.img" class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+
                 <span class = "book-name">{{ book.title.toUpperCase() }}</span>
               </div>
             </div>
@@ -176,7 +182,8 @@ export default {
             <div class = "books">
               <div class = "error" v-if="this.my.length == 0">Странно, здесь пока ничего нет.</div>
               <div v-for="(book, index) in my" class = "book" @click="GotoBook(book._id)">
-                <div class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+                <div v-if="book && book.img" class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
+
                 <span class = "book-name">{{ book.title.toUpperCase() }}</span>
               </div>
             </div>
