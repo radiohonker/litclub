@@ -82,19 +82,25 @@ export default {
 
             const response = await axios.post('/create', bookData);
 
-            this.check = "Книга успешно опубликована!";
-          } else{
-                const response = await axios.post('/create', {
-                  title: this.title,
-                  description: this.description,
-                  content: this.content,
-                  img: 'unnamed.png',
-                  popularity: 0,
-                  author: this.login,
-                  createdAt: new Date().toISOString(),
-                });
-                this.check = "Книга успешно опубликована!"
-            }
+            // Add a small delay or use this.$nextTick() to update this.check
+            setTimeout(() => {
+              this.check = "Книга успешно опубликована!";
+            }, 100); // Adjust the delay as needed
+          } else {
+            const response = await axios.post('/create', {
+              title: this.title,
+              description: this.description,
+              content: this.content,
+              img: 'unnamed.png',
+              popularity: 0,
+              author: this.login,
+              createdAt: new Date().toISOString(),
+            });
+            // Add a small delay or use this.$nextTick() to update this.check
+            setTimeout(() => {
+              this.check = "Книга успешно опубликована!";
+            }, 100); // Adjust the delay as needed
+          }
         } catch (error) {
           console.error( error);
         }
@@ -102,6 +108,7 @@ export default {
         this.check = "Введите все значения!";
       }
     },
+
     handleImageUpload(event) {
       let file = event.target.files[0];
       this.imgUrl = file
@@ -167,7 +174,7 @@ export default {
           <div class="genre">
             <div class = "headline"><h2>Мои книги</h2> <h4 @click="this.$router.push({path: '/filter/fav'})" style = " margin-left:auto; margin-right:1em;">Просмотреть все >>></h4></div>
             <div class = "books">
-              <div class = "error" v-if="this.favs.length == 0">Странно, здесь пока ничего нет.</div>
+              <div class = "error" v-if="this.my.length == 0">Странно, здесь пока ничего нет.</div>
               <div v-for="(book, index) in my" class = "book" @click="GotoBook(book._id)">
                 <div class = "book-cover"><img class = "book-img" :src = "`${book.img}`"></div>
                 <span class = "book-name">{{ book.title.toUpperCase() }}</span>
