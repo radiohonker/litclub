@@ -35,7 +35,7 @@ const multer = require('multer');
 
 const cors = require('cors');
 const corsOptions ={
-    origin:['https://endearing-cassata-2fd9d6.netlify.app/'],
+    origin:['https://mellow-hummingbird-98a4c7.netlify.app//'],
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
