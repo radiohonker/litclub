@@ -1,6 +1,6 @@
 // Запросы к серверу
 import axios from "axios";
-axios.defaults.baseURL = 'https://troubled-teal-caiman.cyclic.app';
+axios.defaults.baseURL = 'https://endearing-cassata-2fd9d6.netlify.app/';
 
 // Работа с датой
 import dayjs from 'dayjs';
