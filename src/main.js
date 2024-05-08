@@ -1,6 +1,6 @@
 // Запросы к серверу
 import axios from "axios";
-axios.defaults.baseURL = 'https://endearing-cassata-2fd9d6.netlify.app/';
+axios.defaults.baseURL = 'https://litclub-5pbp.onrender.com/';
 
 // Работа с датой
 import dayjs from 'dayjs';
