@@ -35,7 +35,7 @@ const multer = require('multer');
 
 const cors = require('cors');
 const corsOptions ={
-    origin:['https://mellow-hummingbird-98a4c7.netlify.app/']
+    origin:['https://litclub-rho.vercel.app/']
 }
 app.use(cors(corsOptions));
 
