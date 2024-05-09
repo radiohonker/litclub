@@ -1,6 +1,6 @@
 // Запросы к серверу
 import axios from "axios";
-axios.defaults.baseURL = 'https://litclub-5pbp.onrender.com/';
+axios.defaults.baseURL = 'http://localhost:3005';
 
 // Работа с датой
 import dayjs from 'dayjs';
