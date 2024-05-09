@@ -33,7 +33,7 @@ app.use(express.json());
 const multer = require('multer');
 
 const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:8080' }));
+app.use(cors({ origin: 'https://litclub-rho.vercel.app/' }));
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
