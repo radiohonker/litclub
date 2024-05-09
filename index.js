@@ -1,6 +1,6 @@
 let express = require(`express`);
 let app = express();
-let port = 3005;
+let port = 5000;
 let mongoose = require('mongoose');
 require('dotenv').config()
 async function com() {
@@ -33,7 +33,7 @@ app.use(express.json());
 const multer = require('multer');
 
 const cors = require('cors');
-app.use(cors({ origin: 'https://litclub-rho.vercel.app/' }));
+app.use(cors({ origin: 'http://89.111.131.69:3005' }));
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
